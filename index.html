@@ -3,79 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuroNet - Обьявления!</title>
+    <title>GuroNET — Магазин гаджетов и электроники</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="header">
         <div class="container header-content">
-            <h1 class="logo">Guro<span>NET</span></h1>
+            <div class="logo">
+                <span class="logo-guro">Guro</span><span class="logo-net">NET</span>
+            </div>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Поиск объявлений...">
+                <input type="text" id="searchInput" placeholder="🔍 Поиск гаджетов...">
                 <button id="searchBtn">Найти</button>
             </div>
-            <button class="btn-primary" id="openModalBtn">+ Подать объявление</button>
+            <div class="header-actions">
+                <button class="btn-cart" id="cartBtn">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="btn-primary" id="openModalBtn">+ Добавить товар</button>
+            </div>
         </div>
     </header>
 
-    <main class="container main-content">
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Будущее <span class="gradient-text">уже здесь</span></h1>
+            <p class="hero-subtitle">Лучшие гаджеты и электроника по выгодным ценам</p>
+            <button class="btn-hero" onclick="document.getElementById('productsSection').scrollIntoView({behavior: 'smooth'})">Смотреть каталог</button>
+        </div>
+    </section>
+
+    <main class="container main-content" id="productsSection">
         <aside class="sidebar">
             <h3>Категории</h3>
             <ul class="categories">
-                <li class="category-item active" data-category="all">Все</li>
-                <li class="category-item" data-category="electronics">Электроника</li>
-                <li class="category-item" data-category="clothes">Одежда</li>
-                <li class="category-item" data-category="home">Для дома</li>
-                <li class="category-item" data-category="auto">Авто</li>
+                <li class="category-item active" data-category="all">🔥 Все товары</li>
+                <li class="category-item" data-category="smartphones">📱 Смартфоны</li>
+                <li class="category-item" data-category="laptops">💻 Ноутбуки</li>
+                <li class="category-item" data-category="audio">🎧 Аудио</li>
+                <li class="category-item" data-category="wearables"> Носимые устройства</li>
+                <li class="category-item" data-category="gaming">🎮 Игровые устройства</li>
+                <li class="category-item" data-category="accessories">🔌 Аксессуары</li>
             </ul>
         </aside>
 
-        <section class="ads-section">
-            <div class="ads-grid" id="adsGrid">
-                <!-- Объявления генерируются через JavaScript -->
+        <section class="products-section">
+            <div class="products-grid" id="productsGrid">
+                <!-- Товары генерируются через JavaScript -->
             </div>
-            <p id="noAdsMessage" class="hidden">Объявления не найдены.</p>
+            <p id="noProductsMessage" class="hidden">Товары не найдены.</p>
         </section>
     </main>
 
-    <!-- Модальное окно для подачи объявления -->
+    <!-- Модальное окно добавления товара -->
     <div class="modal-overlay hidden" id="modalOverlay">
         <div class="modal">
-            <h2>Новое объявление</h2>
-            <form id="adForm">
+            <h2>Новый товар</h2>
+            <form id="productForm">
                 <div class="form-group">
-                    <label for="adTitle">Название</label>
-                    <input type="text" id="adTitle" required>
+                    <label for="prodTitle">Название</label>
+                    <input type="text" id="prodTitle" required>
                 </div>
                 <div class="form-group">
-                    <label for="adPrice">Цена (₽)</label>
-                    <input type="number" id="adPrice" required>
+                    <label for="prodPrice">Цена (₽)</label>
+                    <input type="number" id="prodPrice" required>
                 </div>
                 <div class="form-group">
-                    <label for="adCategory">Категория</label>
-                    <select id="adCategory" required>
-                        <option value="electronics">Электроника</option>
-                        <option value="clothes">Одежда</option>
-                        <option value="home">Для дома</option>
-                        <option value="auto">Авто</option>
+                    <label for="prodCategory">Категория</label>
+                    <select id="prodCategory" required>
+                        <option value="smartphones">Смартфоны</option>
+                        <option value="laptops">Ноутбуки</option>
+                        <option value="audio">Аудио</option>
+                        <option value="wearables">Носимые устройства</option>
+                        <option value="gaming">Игровые устройства</option>
+                        <option value="accessories">Аксессуары</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="adDesc">Описание</label>
-                    <textarea id="adDesc" rows="4" required></textarea>
+                    <label for="prodDesc">Описание</label>
+                    <textarea id="prodDesc" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="adImage">Ссылка на изображение (URL)</label>
-                    <input type="url" id="adImage" placeholder="https://...">
+                    <label for="prodImage">Ссылка на изображение (URL)</label>
+                    <input type="url" id="prodImage" placeholder="https://...">
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn-secondary" id="closeModalBtn">Отмена</button>
-                    <button type="submit" class="btn-primary">Опубликовать</button>
+                    <button type="submit" class="btn-primary">Добавить</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- Модальное окно корзины -->
+    <div class="modal-overlay hidden" id="cartModalOverlay">
+        <div class="modal cart-modal">
+            <h2>Корзина</h2>
+            <div class="cart-items" id="cartItems">
+                <!-- Товары корзины -->
+            </div>
+            <div class="cart-total" id="cartTotal">
+                Итого: <span>0 ₽</span>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="closeCartBtn">Закрыть</button>
+                <button class="btn-primary" id="checkoutBtn">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <span class="logo-guro">Guro</span><span class="logo-net">NET</span>
+            </div>
+            <p class="footer-text">© 2024 GuroNET. Все права защищены.</p>
+            <div class="footer-links">
+                <a href="#">О нас</a>
+                <a href="#">Доставка</a>
+                <a href="#">Контакты</a>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
