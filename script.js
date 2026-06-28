@@ -17,9 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализация данных (если в localStorage пусто, добавляем тестовые)
     if (!localStorage.getItem('ads')) {
         const initialAds = [
-            { id: 1, title: 'iPhone 13 Pro', price: 75000, category: 'electronics', desc: 'Отличное состояние, полный комплект.', image: 'https://via.placeholder.com/300x200/1e1e1e/e53935?text=iPhone' },
-            { id: 2, title: 'Зимняя курка', price: 5000, category: 'clothes', desc: 'Теплая, размер M, носилась один сезон.', image: 'https://via.placeholder.com/300x200/1e1e1e/e53935?text=Jacket' },
-            { id: 3, title: 'Диван-кровать', price: 15000, category: 'home', desc: 'Раскладной, есть ящик для белья.', image: 'https://via.placeholder.com/300x200/1e1e1e/e53935?text=Sofa' }
+            { id: 1, title: 'iPhone 13 Pro', price: 75000, category: 'electronics', desc: 'Отличное состояние, полный комплект.', image: 'https://avatars.mds.yandex.net/i?id=6360b56987daac065760c9fe33da89c000de0268-4568831-images-thumbs&n=13' },
+            { id: 2, title: 'iPhone 12 Pro', price: 25000, category: 'clothes', desc: 'Теплая, размер M, носилась один сезон.', image: 'https://avatars.mds.yandex.net/i?id=7f4a93762707cca10d47b3952e9bd959d9503306-4236774-images-thumbs&n=13' }
         ];
         localStorage.setItem('ads', JSON.stringify(initialAds));
     }
