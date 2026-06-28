@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuroNet - Добро пожаловать!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-content">
+            <h1 class="logo">RED<span>MARKET</span></h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Поиск объявлений...">
+                <button id="searchBtn">Найти</button>
+            </div>
+            <button class="btn-primary" id="openModalBtn">+ Подать объявление</button>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <aside class="sidebar">
+            <h3>Категории</h3>
+            <ul class="categories">
+                <li class="category-item active" data-category="all">Все</li>
+                <li class="category-item" data-category="electronics">Электроника</li>
+                <li class="category-item" data-category="clothes">Одежда</li>
+                <li class="category-item" data-category="home">Для дома</li>
+                <li class="category-item" data-category="auto">Авто</li>
+            </ul>
+        </aside>
+
+        <section class="ads-section">
+            <div class="ads-grid" id="adsGrid">
+                <!-- Объявления генерируются через JavaScript -->
+            </div>
+            <p id="noAdsMessage" class="hidden">Объявления не найдены.</p>
+        </section>
+    </main>
+
+    <!-- Модальное окно для подачи объявления -->
+    <div class="modal-overlay hidden" id="modalOverlay">
+        <div class="modal">
+            <h2>Новое объявление</h2>
+            <form id="adForm">
+                <div class="form-group">
+                    <label for="adTitle">Название</label>
+                    <input type="text" id="adTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="adPrice">Цена (₽)</label>
+                    <input type="number" id="adPrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="adCategory">Категория</label>
+                    <select id="adCategory" required>
+                        <option value="electronics">Электроника</option>
+                        <option value="clothes">Одежда</option>
+                        <option value="home">Для дома</option>
+                        <option value="auto">Авто</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="adDesc">Описание</label>
+                    <textarea id="adDesc" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="adImage">Ссылка на изображение (URL)</label>
+                    <input type="url" id="adImage" placeholder="https://...">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="closeModalBtn">Отмена</button>
+                    <button type="submit" class="btn-primary">Опубликовать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
